@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyBuddy - Your AI Virtual Study Assistant for University Students</title>
+    <meta name="description" content="Study smarter, not harder with StudyBuddy, the AI virtual study assistant for university students. Get personalized learning plans, flashcards, quizzes, and AI-guided explanations.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6B46C1; /* A vibrant purple */
+            --secondary-color: #805AD5; /* A slightly lighter purple */
+            --text-color: #333;
+            --light-text-color: #666;
+            --background-color: #f9f9f9;
+            --white: #ffffff;
+            --border-color: #e0e0e0;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--white);
+            padding: 20px 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .cta-button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .section:nth-of-type(even) {
+            background-color: var(--white);
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .section p.lead {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 60px auto;
+            color: var(--light-text-color);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            text-align: left;
+            transition: transform 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-item .icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .feature-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .feature-item p {
+            color: var(--light-text-color);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 15px;
+            color: var(--light-text-color);
+        }
+
+        .testimonial-card .author {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .cta-banner {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-banner h2 {
+            color: var(--white);
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-banner p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        footer {
+            background-color: var(--text-color);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer .footer-links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+
+        footer .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        footer .footer-links a:hover {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Simple hide for mobile, would use a hamburger menu in production */
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .section h2 {
+                font-size: 2rem;
+            }
+            .section p.lead {
+                font-size: 1rem;
+            }
+            .cta-banner h2 {
+                font-size: 2rem;
+            }
+            .cta-banner p {
+                font-size: 1rem;
+            }
+            .cta-button {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            .logo {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">StudyBuddy</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <a href="pricing.html" class="cta-button">Get Started Free</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <h1>Unlock Your Full Academic Potential with AI</h1>
+                <p>StudyBuddy is your personalized AI virtual assistant, designed for university students to organize, learn, and excel. Say goodbye to study stress!</p>
+                <a href="pricing.html" class="cta-button">Start Your Free Trial Today</a>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>How StudyBuddy Transforms Your Learning Experience</h2>
+                <p class="lead">From personalized plans to AI-guided explanations, StudyBuddy is built to make university studies smarter, more efficient, and truly effective.</p>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <span class="icon">🧠</span>
+                        <h3>Personalized Learning Plans</h3>
+                        <p>Get a study roadmap tailored to your unique learning style, course load, and academic goals. Adaptable and always up-to-date.</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">🗓️</span>
+                        <h3>Smart Schedule Organization</h3>
+                        <p>Effortlessly manage your study schedule, deadlines, and commitments. StudyBuddy keeps you on track, so you never miss a beat.</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">📚</span>
+                        <h3>Flashcards & Quizzes Generator</h3>
+                        <p>Instantly create custom flashcards and practice quizzes from your notes or course materials to master any subject.</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">📈</span>
+                        <h3>Progress Tracking & Weak Topic ID</h3>
+                        <p>Monitor your academic growth, identify areas needing improvement, and get targeted resources to strengthen weak topics.</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">💡</span>
+                        <h3>AI-Guided Explanations</h3>
+                        <p>Stuck on a complex concept? StudyBuddy provides clear, concise, and easy-to-understand AI-powered explanations on demand.</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">🎯</span>
+                        <h3>Goal Setting & Motivation</h3>
+                        <p>Set achievable study goals and stay motivated with reminders and insights designed to keep you focused and driven.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>What University Students Are Saying</h2>
+                <p class="lead">Join thousands of students who are already acing their courses with StudyBuddy.</p>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <p>"StudyBuddy has been a game-changer for my engineering courses. The AI explanations break down complex topics like nothing else!"</p>
+                        <div class="author">- Sarah L., Computer Science Student</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"Finally, a tool that helps me organize my chaotic study life. The personalized plans keep me accountable and on track."</p>
+                        <div class="author">- David K., Business Administration</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"I used to dread exam prep, but with StudyBuddy's flashcards and quizzes, I feel so much more confident. Highly recommend!"</p>
+                        <div class="author">- Emily R., Psychology Major</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-banner">
+            <div class="container">
+                <h2>Ready to Study Smarter, Not Harder?</h2>
+                <p>Join the future of personalized learning. StudyBuddy is here to help you succeed.</p>
+                <a href="pricing.html" class="cta-button">Get StudyBuddy Now</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <ul class="footer-links">
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Support</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+            </ul>
+            <p>&copy; 2023 StudyBuddy. All rights reserved.</p>
+        </div>
+    </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
